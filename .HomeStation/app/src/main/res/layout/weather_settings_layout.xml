@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@drawable/side_nav_bar"
+        android:gravity="center"
+        android:text="@string/weatherSettings"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:id="@+id/weather_settings_city_editText"
+        android:layout_height="64dp"
+        android:gravity="center"
+        android:hint="@string/enterNameOfCity" />
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rdioButton_Weather_Celsius"
+                android:layout_width="wrap_content"
+                android:text="Celsius"
+                android:layout_margin="8dp"
+
+                android:layout_height="wrap_content" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:id="@+id/rdioButton_Weather_Kelvin"
+                android:text="Kelvin"
+                android:layout_margin="8dp"
+                android:layout_height="wrap_content" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:id="@+id/rdioButton_Weather_Fahrenheit"
+                android:text="Fahrenheit"
+                android:layout_margin="8dp"
+
+                android:layout_height="wrap_content" />
+
+        </RadioGroup>
+</LinearLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="home_hello_world">Hallo wereld!</string>
+    <string name="language_english">Engels</string>
+    <string name="language_dutch">Nederlands</string>
+    <string name="action_settings">Instellingen</string>
+    <string name="menu_language">Taal</string>
+    <string name="menu_font">Thema stijl</string>
+    <string name="menu_exit">Uitgang</string>
+    <string name="menu_radio">Radio</string>
+    <string name="menu_energy">Energieverbruik</string>
+    <string name="menu_weather">Weervoorspelling</string>
+    <string name="menu_radar">Weerradar</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_settings">Instellingen</string>
+
+    <string name="consumption_category">Kies een categorie</string>
+    <string name="fuel">Brandstof</string>
+    <string name="watercounter">Watermeter</string>
+    <string name="gas">Gas</string>
+    <string name="overview">Overzicht</string>
+
+
+
+    <string-array name="consumption_array">
+        <item>Elektriciteit</item>
+        <item>Watermeter</item>
+        <item>Gas</item>
+        <item>Brandstof</item>
+    </string-array>
+    <string name="place_not_found">Sorry, geen weergegevens gevonden.</string>
+
+    <string name="welcome_home">Welkom bij uw \nHomeStation</string>
+    <string name="toHome">naar huis</string>
+    <string name="energyConsumption">Energieverbruik</string>
+    <string name="consumptionData">Verbruiksgegevens</string>
+    <string name="selectCategory">Kies een categorie:</string>
+    <string name="value">Value:</string>
+    <string name="date">Datum:</string>
+    <string name="consumptionOverview">Consumptie Overzicht</string>
+    <string name="totalCperCategory">De totale consumptie per categorie:</string>
+    <string name="electricity">Elektriciteit</string>
+    <string name="fuelConsumption">Brandstofverbruik</string>
+    <string name="gasConsumption">Gasverbruik</string>
+    <string name="chooseLanguage">Kies een taal</string>
+    <string name="waterConsumption">Waterverbruik</string>
+    <string name="weatherSettings">Weer Instellingen</string>
+    <string name="enterNameOfCity">Voer de naam van de stad</string>
+
+
+</resources>

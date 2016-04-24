@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_action_home"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_energy"
+            android:icon="@drawable/ic_action_energy"
+            android:title="@string/menu_energy" />
+        <item
+            android:id="@+id/nav_weather"
+            android:icon="@drawable/ic_action_cloudy"
+            android:title="@string/menu_weather"/>
+
+        <item
+            android:id="@+id/nav_weather_radar"
+            android:icon="@drawable/ic_action_sun"
+            android:title="@string/menu_radar" />
+        <!--<item-->
+            <!--android:id="@+id/nav_radio"-->
+            <!--android:icon="@drawable/ic_action_headphones"-->
+            <!--android:title="@string/menu_radio" />-->
+    </group>
+
+    <item android:title="@string/menu_settings"
+        android:icon="@drawable/ic_menu_manage"
+        >
+
+        <menu>
+            <item
+                android:id="@+id/nav_language"
+                android:icon="@drawable/ic_action_flag"
+                android:title="@string/menu_language" />
+            <!--<item-->
+                <!--android:id="@+id/nav_font_style"-->
+                <!--android:icon="@drawable/ic_action_font_bigger"-->
+                <!--android:title="@string/menu_font" />-->
+            <item
+                android:id="@+id/nav_Exit"
+                android:icon="@drawable/ic_action_exit"
+                android:title="@string/menu_exit" />
+        </menu>
+    </item>
+
+</menu>

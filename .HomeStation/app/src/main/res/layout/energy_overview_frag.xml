@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/gasTitleTextView"
+        android:text="@string/consumptionOverview"
+        android:layout_marginTop="15dp"
+        style="@style/Weather_Main_text"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/overview_chart_pie"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
+    <TextView
+        android:id="@+id/overview_data_info_Title"
+        android:text="@string/totalCperCategory"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:textSize="17sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/overview_data_info_categories"
+            android:text="@string/electricity"
+            android:gravity="left"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="70dp"
+            android:textSize="15sp"
+            android:layout_width="170dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/overview_data_info_values"
+            android:text="Value: 101"
+            android:gravity="left"
+            android:layout_toRightOf="@+id/overview_data_info_categories"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="15sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/cyan" android:state_pressed="true">
+    <shape android:shape="rectangle">
+        <solid android:color="#e19a9a" />
+        <stroke android:width="1dip" android:color="#4fa5d5" />
+    </shape>
+    </item>
+
+    <!-- pressed state -->
+    <item android:drawable="@color/cyan" android:state_focused="true" />
+    <!-- focused state -->
+    <item android:drawable="@android:color/transparent" />
+
+</selector>

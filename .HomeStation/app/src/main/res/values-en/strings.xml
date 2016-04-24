@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">.HomeStation</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="home_hello_world">Hello World!</string>
+    <string name="language_english">English</string>
+    <string name="language_dutch">Dutch</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_language">Language</string>
+    <string name="menu_font">Theme Style</string>
+    <string name="menu_exit">Exit</string>
+    <string name="menu_radar">Weather Radar</string>
+    <string name="menu_radio">Radio</string>
+    <string name="menu_energy">Energy Consumption</string>
+    <string name="menu_weather">Weather Forecast</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_settings">Settings</string>
+    <string name="consumption_category">Choose a category</string>
+    <string name="fuel">Fuel</string>
+    <string name="watercounter">Water Counter</string>
+    <string name="gas">Gas</string>
+    <string name="overview">Overview</string>
+
+
+    <string-array name="consumption_array">
+        <item>Electricity</item>
+        <item>Water Counter</item>
+        <item>Gas</item>
+        <item>Fuel</item>
+    </string-array>
+    <string name="place_not_found">Sorry, no weather data found.</string>
+
+    <string name="welcome_home">Welcome to your \nHomeStation</string>
+    <string name="toHome">to home</string>
+    <string name="energyConsumption">Energy Consumption</string>
+    <string name="consumptionData">Consumption data</string>
+    <string name="selectCategory">Select Category:</string>
+    <string name="value">Value:</string>
+    <string name="date">Date:</string>
+    <string name="consumptionOverview">Consumption Overview</string>
+    <string name="totalCperCategory">Total consumption per category:</string>
+    <string name="electricity">Electricity</string>
+    <string name="fuelConsumption">Fuel Consumption</string>
+    <string name="gasConsumption">Gas Consumption</string>
+    <string name="chooseLanguage">Choose a language</string>
+    <string name="waterConsumption">Water Consumption</string>
+    <string name="weatherSettings">Weather Settings</string>
+    <string name="enterNameOfCity">Enter the name of the city</string>
+</resources>

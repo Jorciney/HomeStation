@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:sothree="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sliding_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    sothree:umanoPanelHeight="68dp"
+    sothree:umanoShadowHeight="4dp">
+    <!--<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/energy_linear_layout_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light"
+        android:orientation="vertical"
+        tools:context=".activities.MainActivity">
+        android:orientation="vertical">
+
+        <com.ogaclejapan.smarttablayout.SmartTabLayout
+            android:id="@+id/viewpagertab"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#d8512da8"
+            app:stl_clickable="true"
+            app:stl_defaultTabBackground="?attr/selectableItemBackground"
+            app:stl_defaultTabTextAllCaps="true"
+            app:stl_defaultTabTextColor="#fcffffff"
+            app:stl_defaultTabTextHorizontalPadding="16dp"
+            app:stl_defaultTabTextMinWidth="0dp"
+            app:stl_defaultTabTextSize="12sp"
+            app:stl_distributeEvenly="false"
+            app:stl_dividerColor="#9ccfca42"
+            app:stl_dividerThickness="2dp"
+            app:stl_drawDecorationAfterTab="false"
+            app:stl_indicatorAlwaysInCenter="false"
+            app:stl_indicatorColor="#40C4FF"
+            app:stl_indicatorCornerRadius="2dp"
+            app:stl_indicatorGravity="bottom"
+            app:stl_indicatorInFront="false"
+            app:stl_indicatorInterpolation="smart"
+            app:stl_indicatorThickness="5dp"
+            app:stl_indicatorWidth="auto"
+            app:stl_indicatorWithoutPadding="false"
+            app:stl_overlineColor="#4de4e6c3"
+            app:stl_overlineThickness="0dp"
+            app:stl_titleOffset="24dp"
+            app:stl_underlineColor="#76cac985"
+            app:stl_underlineThickness="1dp" />
+
+
+        <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/consumption_floatingButton"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="@dimen/fab_margin"-->
+        <!--android:layout_marginTop="50dp"-->
+        <!--android:src="@drawable/ic_action_add_white"-->
+        <!--app:layout_anchor="@id/myLinearLayout"-->
+        <!--app:layout_anchorGravity="bottom|right|end" />-->
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/viewpagertab"
+            android:layout_marginTop="53dp" />
+
+        <ImageButton
+            android:id="@+id/energy_expand_menu"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:layout_gravity="bottom"
+            android:layout_margin="@dimen/fab_margin"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ef_button"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_expand_arrow"
+            app:layout_anchorGravity="bottom|center_horizontal" />
+    </android.support.design.widget.CoordinatorLayout>
+
+    <LinearLayout
+        android:id="@+id/energy_slide_up_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:background="@null"
+        android:gravity="center|top"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="#61545454"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/energy_collapse_menu"
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="-10dp"
+                android:background="@drawable/ef_button"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_collapse_arrow" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--</android.support.design.widget.CoordinatorLayout>-->
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>

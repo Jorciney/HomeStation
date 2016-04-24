@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@drawable/side_nav_bar"
+        android:gravity="center"
+        android:text="@string/consumptionData"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_margin="10dp"
+        android:gravity="left"
+        android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:text="@string/selectCategory" />
+    <Spinner
+        android:id="@+id/dropdownChooseConsumptionSpinner"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="left"
+        android:dropDownWidth="180dp"
+        android:popupBackground="@drawable/border"
+        android:background="@drawable/spinner_background"
+        android:entries="@array/consumption_array"
+        android:spinnerMode="dropdown"
+        android:prompt="@string/consumption_category" />
+
+</LinearLayout>
+    <!--<Button-->
+    <!--android:id="@+id/btnSubmitCategory"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="Submit" />-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginLeft="10dp"
+        android:gravity="left"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:text="@string/value" />
+
+        <EditText
+            android:id="@+id/consumption_value_editText"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="100" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginLeft="10dp"
+        android:gravity="left"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:text="@string/date" />
+
+        <EditText
+            android:id="@+id/consumption_date_editText"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="12/01/2016" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:id="@+id/consumption_pickDate_imagebutton"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/state_list"
+            android:src="@drawable/ic_action_calendar_day" />
+
+    </LinearLayout>
+</LinearLayout>

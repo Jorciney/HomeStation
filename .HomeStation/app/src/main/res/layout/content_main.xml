@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/imageedit_1_2622079033"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:id="@+id/content_mainLinearLayout"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activities.MainActivity"
+    tools:showIn="@layout/toolbar">
+
+    <RelativeLayout
+        android:id="@+id/home_header_relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/home_welcome_text"
+            style="@style/Weather_Main_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:gravity="center"
+            android:text="@string/welcome_home"
+            android:textColor="@color/black"
+            android:textSize="27sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_toRightOf="@id/home_welcome_text"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/home_weather_widget_image"
+                style="@style/Weather_Main_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:text="Ic"
+                android:textSize="60sp" />
+
+            <TextView
+                android:id="@+id/home_weather_widget_TempText"
+                style="@style/Weather_Main_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="25º"
+                android:textSize="25sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/home_time_to_home"
+            style="@style/Weather_lower_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="28 min"
+            android:textColor="@color/orange"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/home_to_homeText"
+            style="@style/Weather_lower_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/toHome" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/home_energy_consumption_text"
+        style="@style/Weather_Main_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/energyConsumption"
+        android:textColor="@color/light"
+        android:textSize="25sp" />
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/home_overview_chart_pie"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
+</LinearLayout>
