@@ -48,6 +48,7 @@ public class MainActivity extends RootActivity implements NavigationView.OnNavig
     private ActionBarDrawerToggle mDrawerToggle;
     private Fragment fragment = null;
     private Class fragmentClass = HomeFragment.class;
+    public static int FRAG_ACTION;
 
     private Integer position;
 
@@ -166,7 +167,6 @@ public class MainActivity extends RootActivity implements NavigationView.OnNavig
     public void initDatabase() {
         Firebase.setAndroidContext(this);
         Utils.myFirebaseRef = new Firebase("https://jorcystation.firebaseIO.com");
-
     }
 
 
@@ -197,7 +197,6 @@ public class MainActivity extends RootActivity implements NavigationView.OnNavig
                     // TODO update fragment
                 }
             }
-
             @Override
             public void onCancelled(FirebaseError firebaseError) {
             }
@@ -220,13 +219,6 @@ public class MainActivity extends RootActivity implements NavigationView.OnNavig
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
-        return true;
-    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -235,13 +227,14 @@ public class MainActivity extends RootActivity implements NavigationView.OnNavig
 
         if (id == R.id.nav_home) {
             fragmentClass = HomeFragment.class;
+            FRAG_ACTION=Utils.FRAG_ACTION_HOME;
         } else if (id == R.id.nav_energy) {
             setNewIntent(EnergyActivity.class);
         } else if (id == R.id.nav_weather) {
-//            setNewIntent(WeatherFragment.class);
+            FRAG_ACTION=Utils.FRAG_ACTION_WEATHER;
             fragmentClass=WeatherFragment.class;
-
         } else if (id == R.id.nav_weather_radar) {
+            FRAG_ACTION=Utils.FRAG_ACTION_RADAR;
             fragmentClass=WeatherRadarWebViewFragment.class;
 //        } else if (id == R.id.nav_radio) {
         } else if (id == R.id.nav_language) {
@@ -269,6 +262,18 @@ public class MainActivity extends RootActivity implements NavigationView.OnNavig
             fragmentManager.beginTransaction().replace(R.id.main_frameLayoutContent, fragment).commit();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(FRAG_ACTION==Utils.FRAG_ACTION_HOME){
+            replaceFragment(HomeFragment.class);
+        }else if(FRAG_ACTION==Utils.FRAG_ACTION_WEATHER){
+            replaceFragment(WeatherFragment.class);
+        }else if(FRAG_ACTION==Utils.FRAG_ACTION_RADAR){
+            replaceFragment(WeatherRadarWebViewFragment.class);
         }
     }
 }

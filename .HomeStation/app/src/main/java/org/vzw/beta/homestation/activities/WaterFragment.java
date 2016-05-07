@@ -3,10 +3,12 @@ package org.vzw.beta.homestation.activities;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
@@ -15,6 +17,8 @@ import com.github.mikephil.charting.data.BarEntry;
 
 import org.vzw.beta.homestation.R;
 import org.vzw.beta.homestation.beans.Water;
+import org.vzw.beta.homestation.tools.MyElectricityRecyclerViewAdapter;
+import org.vzw.beta.homestation.tools.MyWaterRecyclerViewAdapter;
 import org.vzw.beta.homestation.tools.Utils;
 
 import java.util.ArrayList;
@@ -25,30 +29,40 @@ import java.util.Map;
  * Created by Jorciney on 22/03/2016.
  */
 public class WaterFragment extends Fragment {
-    private static TextView infoTextView;
     public static View view;
-    private static String info;
     private static ArrayList<BarDataSet> dataSets = new ArrayList<>();
     private static BarDataSet barDataSet1;
     private static BarChart chart;
+    private static RecyclerView recyclerView;
+    private static RecyclerView.LayoutManager mLayoutManager;
+    public static MyWaterRecyclerViewAdapter recyclerViewAdapter;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         view = inflater.inflate(R.layout.water_frag_layout, container, false);
-        infoTextView = (TextView) view.findViewById(R.id.water_data_info);
 
-        WaterFragment.updateTextView();
-        WaterFragment.setUpChart();
+        //RecyclerView
+        recyclerView = (RecyclerView) view.findViewById(R.id.water_recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerViewAdapter = new MyWaterRecyclerViewAdapter();
+        mLayoutManager = new LinearLayoutManager(this.getContext());
+        recyclerView.setAdapter(recyclerViewAdapter);
+        recyclerView.setLayoutManager(mLayoutManager);
+        RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
+        itemAnimator.setAddDuration(1000);
+        itemAnimator.setRemoveDuration(1000);
+        recyclerView.setItemAnimator(itemAnimator);
 
+        WaterFragment.updateInfo();
         return view;
     }
 
     /*Chart*/
     private static void setUpChart() {
 
-        WaterFragment.chart = (BarChart) view.findViewById(R.id.chartWaterGraphicImage);
+        WaterFragment.chart = (BarChart) WaterFragment.view.findViewById(R.id.chartWaterGraphicImage);
         BarData data = new BarData(getXAxisValues());
         getDataSet();
         for (int i = 0; i < WaterFragment.dataSets.size(); i++) {
@@ -98,17 +112,9 @@ public class WaterFragment extends Fragment {
         return xAxis;
     }
 
-    public static void updateTextView() {
-        if (infoTextView != null) {
-
-            infoTextView.setText("");
-            info = "\nTotal Entries: " + Utils.dataObjectsWaterDB.size() + "\n\n";
-            for (Map.Entry<String, Object> entry : Utils.dataObjectsWaterDB.entrySet()) {
-                info += "Date:\t" + (((Water) entry.getValue()).getDate()) + "\t\t\tValue:\t" + (((Water) entry.getValue()).getValue() + "\n");
-            }
-            infoTextView.setText(info + "\nTotal Entries: " + Utils.dataObjectsWaterDB.size() + "\n");
-
-            WaterFragment.setUpChart();
+    public static void updateInfo() {
+        if (WaterFragment.view != null) {
+            setUpChart();
         }
     }
 }

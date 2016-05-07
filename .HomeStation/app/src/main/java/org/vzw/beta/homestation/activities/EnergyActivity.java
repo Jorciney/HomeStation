@@ -1,6 +1,5 @@
 package org.vzw.beta.homestation.activities;
 
-import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -9,17 +8,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
-import android.view.DragEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -63,7 +55,6 @@ public class EnergyActivity extends RootActivity {
     private int year, month, day;
     private ImageButton pickDateButton;
 
-
     private EditText givenValueEditText;
     private EditText givenDateEditText;
     private Spinner dropdown;
@@ -72,6 +63,7 @@ public class EnergyActivity extends RootActivity {
     private ImageButton menuButtonCollapse;
     private SlidingUpPanelLayout panel;
     private View mDecorView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,8 +79,6 @@ public class EnergyActivity extends RootActivity {
         panel = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
         panel.setOverlayed(true);
 
-
-        //panel.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
         panel.setPanelHeight(35);
         FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
         tx.replace(R.id.energy_slide_up_linear_layout, mGridMenuFragment);
@@ -118,45 +108,62 @@ public class EnergyActivity extends RootActivity {
 
             @Override
             public void onPanelStateChanged(View panelView, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
-                if (newState== SlidingUpPanelLayout.PanelState.EXPANDED) {
+                if (newState == SlidingUpPanelLayout.PanelState.EXPANDED) {
 //                    panel.setAlpha((float) 0.7);
                     panel.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
                     menuButtonCollapse.setVisibility(View.VISIBLE);
                     menuButtonExpand.setVisibility(View.INVISIBLE);
-
-
                 }
-//                } else if (GRIDMENU_IS_UP) {
-                if (newState== SlidingUpPanelLayout.PanelState.COLLAPSED || newState== SlidingUpPanelLayout.PanelState.ANCHORED) {
+                if (newState == SlidingUpPanelLayout.PanelState.COLLAPSED || newState == SlidingUpPanelLayout.PanelState.ANCHORED) {
                     panel.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
                     menuButtonCollapse.setVisibility(View.INVISIBLE);
                     menuButtonExpand.setVisibility(View.VISIBLE);
-
                 }
             }
         });
-
         setupGridMenu();
         mGridMenuFragment.setOnClickMenuListener(new GridMenuFragment.OnClickMenuListener() {
             @Override
             public void onClickMenu(GridMenu gridMenu, int position) {
-                Toast.makeText(EnergyActivity.this, "Title:" + gridMenu.getTitle() + ", Position:" + position,
-                        Toast.LENGTH_SHORT).show();
-
+                Intent intent = new Intent(EnergyActivity.this, MainActivity.class);
                 switch (position) {
                     case 0:
-                        Intent intent = new Intent(EnergyActivity.this, MainActivity.class);
+                        panel.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+                        MainActivity.FRAG_ACTION=Utils.FRAG_ACTION_HOME;
                         startActivity(intent);
                         finish();
                         getSupportFragmentManager().popBackStack();
                         break;
+                    case 1:
+                        panel.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+                        break;
+                    case 2:
+                        finish();
+                        MainActivity.FRAG_ACTION=Utils.FRAG_ACTION_WEATHER;
+                        startActivity(intent);
+                        break;
+                    case 3:
+                        finish();
+                        MainActivity.FRAG_ACTION=Utils.FRAG_ACTION_RADAR;
+                        startActivity(intent);
+                        break;
+                    case 4:
+                        Toast.makeText(EnergyActivity.this, "Title:" + gridMenu.getTitle() + ", Position:" + position,
+                                Toast.LENGTH_SHORT).show();
+                        panel.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+                        break;
+                    case 5:
+                        panel.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+                        startLanguageSelection();
+                        break;
                     case 6:
+                        panel.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
                         addConsumptionDataDialog();
                         break;
                     default:
+                        finish();
                         break;
                 }
-
             }
         });
 
@@ -199,7 +206,7 @@ public class EnergyActivity extends RootActivity {
             panel.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
         } else {
             moveTaskToBack(true);
-
+            EnergyActivity.this.finish();
         }
     }
 
@@ -239,21 +246,29 @@ public class EnergyActivity extends RootActivity {
                         Electricity tempElectricity = new Electricity(Long.parseLong(givenValueEditText.getText().toString()), givenDateEditText.getText().toString());
                         Utils.dataObjectsElectricityDB.clear();
                         setDBKeyValueData("Electricity", tempElectricity);
+                        ElectricityFragment.recyclerViewAdapter.notifyDataSetChanged();
+                        ElectricityFragment.updateInfo();
                         break;
                     case 1:
                         Water tempWater = new Water(Long.parseLong(givenValueEditText.getText().toString()), givenDateEditText.getText().toString());
                         Utils.dataObjectsWaterDB.clear();
                         setDBKeyValueData("Water", tempWater);
+                        WaterFragment.recyclerViewAdapter.notifyDataSetChanged();
+                        WaterFragment.updateInfo();
                         break;
                     case 2:
                         Gas tempGas = new Gas(Long.parseLong(givenValueEditText.getText().toString()), givenDateEditText.getText().toString());
                         Utils.dataObjectsGasDB.clear();
                         setDBKeyValueData("Gas", tempGas);
+                        GasFragment.recyclerViewAdapter.notifyDataSetChanged();
+                        GasFragment.updateInfo();
                         break;
                     default:
                         Fuel tempFuel = new Fuel(Long.parseLong(givenValueEditText.getText().toString()), givenDateEditText.getText().toString());
                         Utils.dataObjectsFuelDB.clear();
                         setDBKeyValueData("Fuel", tempFuel);
+                        FuelFragment.recyclerViewAdapter.notifyDataSetChanged();
+                        FuelFragment.updateInfo();
                         break;
                 }
 
@@ -270,7 +285,6 @@ public class EnergyActivity extends RootActivity {
         AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
-
     }
 
 
@@ -323,7 +337,6 @@ public class EnergyActivity extends RootActivity {
                     System.out.println(b + " -- " + a + " -- " + c + "\n");
                 }
             }
-
             @Override
             public void onCancelled(FirebaseError firebaseError) {
             }
@@ -337,7 +350,6 @@ public class EnergyActivity extends RootActivity {
 
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-
                 System.out.println(snapshot.getValue() + " Count: " + snapshot.getChildrenCount()); // the String "John"
                 if (snapshot != null && snapshot.getChildrenCount() > 0) {
 
@@ -371,17 +383,12 @@ public class EnergyActivity extends RootActivity {
                     Utils.dataObjectsWaterDB.put(((Water) value).getUniqueID(), value);
                     Utils.myFirebaseRef.child(key).setValue(Utils.dataObjectsWaterDB.entrySet());
                 }
-                ElectricityFragment.updateTextView();
-                GasFragment.updateTextView();
-                FuelFragment.updateTextView();
-                WaterFragment.updateTextView();
             }
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
             }
         });
-
     }
 
     public void setNewIntent(java.lang.Class intentClass) {
@@ -411,5 +418,3 @@ public class EnergyActivity extends RootActivity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
     }
 }
-
-

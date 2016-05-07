@@ -3,10 +3,12 @@ package org.vzw.beta.homestation.activities;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
@@ -15,6 +17,8 @@ import com.github.mikephil.charting.data.BarEntry;
 
 import org.vzw.beta.homestation.R;
 import org.vzw.beta.homestation.beans.Fuel;
+import org.vzw.beta.homestation.tools.MyElectricityRecyclerViewAdapter;
+import org.vzw.beta.homestation.tools.MyFuelRecyclerViewAdapter;
 import org.vzw.beta.homestation.tools.Utils;
 
 import java.util.ArrayList;
@@ -25,22 +29,34 @@ import java.util.Map;
  * Created by Jorciney on 22/03/2016.
  */
 public class FuelFragment extends Fragment {
-    private static TextView infoTextView;
     public static View view;
     private static String info;
     private static ArrayList<BarDataSet> dataSets = new ArrayList<>();
     private static BarDataSet barDataSet1;
     private static BarChart chart;
+    private static RecyclerView recyclerView;
+    private static RecyclerView.LayoutManager mLayoutManager;
+    public static MyFuelRecyclerViewAdapter recyclerViewAdapter;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         view = inflater.inflate(R.layout.fuel_frag_layout, container, false);
-        infoTextView = (TextView) view.findViewById(R.id.fuel_data_info);
 
-        FuelFragment.updateTextView();
-        FuelFragment.setUpChart();
+
+        //RecyclerView
+        recyclerView = (RecyclerView) view.findViewById(R.id.fuel_recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerViewAdapter = new MyFuelRecyclerViewAdapter();
+        mLayoutManager = new LinearLayoutManager(this.getContext());
+        recyclerView.setAdapter(recyclerViewAdapter);
+        recyclerView.setLayoutManager(mLayoutManager);
+        RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
+        itemAnimator.setAddDuration(1000);
+        recyclerView.setItemAnimator(itemAnimator);
+
+        FuelFragment.updateInfo();
 
         return view;
     }
@@ -48,7 +64,7 @@ public class FuelFragment extends Fragment {
     /*Chart*/
     private static void setUpChart() {
 
-        FuelFragment.chart = (BarChart) view.findViewById(R.id.chartFuelGraphicImage);
+        FuelFragment.chart = (BarChart) FuelFragment.view.findViewById(R.id.chartFuelGraphicImage);
         BarData data = new BarData(getXAxisValues());
         getDataSet();
         for (int i = 0; i < FuelFragment.dataSets.size(); i++) {
@@ -98,15 +114,9 @@ public class FuelFragment extends Fragment {
         return xAxis;
     }
 
-    public static void updateTextView() {
-        if (infoTextView != null) {
-            infoTextView.setText("");
-            info = "\nTotal Entries: " + Utils.dataObjectsFuelDB.size() + "\n\n";
-            for (Map.Entry<String, Object> entry : Utils.dataObjectsFuelDB.entrySet()) {
-                info += "Date:\t" + (((Fuel) entry.getValue()).getDate()) + "\t\t\tValue:\t" + (((Fuel) entry.getValue()).getValue() + "\n");
-            }
-            infoTextView.setText(info + "\nTotal Entries: " + Utils.dataObjectsFuelDB.size() + "\n");
-            FuelFragment.setUpChart();
+    public static void updateInfo() {
+        if (FuelFragment.view != null) {
+            setUpChart();
         }
     }
 }

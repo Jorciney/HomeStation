@@ -7,10 +7,6 @@
         android:layout_width="match_parent"
         android:id="@+id/webView_weather"
         android:layout_height="match_parent">
-
     </WebView>
-
-
-
 
 </LinearLayout>

@@ -78,6 +78,8 @@ public class WeatherFragment extends Fragment {
     private String mainMaxTempJSON = "temp_max";
     private String windSpeedJSON = "speed";
     private String cityNameJSON = "name";
+    private long sunriseJSON;
+    private long sunsetJSON;
 
 
     private static int MY_IDENTIFICATION = 0;
@@ -129,10 +131,11 @@ public class WeatherFragment extends Fragment {
                 showDialogSettings();
             }
         });
-        layoutDay1.setOnClickListener(new View.OnClickListener() {
+        layoutDay1.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View v) {
+            public boolean onLongClick(View v) {
                 setNewIntent(LiveWeatherActivity.class);
+                return true;
             }
         });
 
@@ -174,6 +177,8 @@ public class WeatherFragment extends Fragment {
             mainDescText.setText(weatherObj.getString(weatherDescJSON) + "\n" + "Humidity: " + mainObj.getString(mainHumidityJSON) + "%\n" + "Wind: " + jsonObject.getJSONObject("wind").getString(windSpeedJSON) + " m/s");
             mainTempText.setText(mainObj.getInt(mainTempJSON) + "º");
             mainCityText.setText(jsonObject.getString(cityNameJSON));
+            sunriseJSON=jsonObject.getJSONObject("sys").getInt("sunrise");
+            sunsetJSON=jsonObject.getJSONObject("sys").getInt("sunset");
             PreferencesHelper.COUNTRY_CODE=jsonObject.getJSONObject("sys").getString("country");
 
             //this is another way to set the icons
@@ -227,8 +232,10 @@ public class WeatherFragment extends Fragment {
             long currentTime = new Date().getTime();
             if (currentTime >= sunrise && currentTime < sunset) {
                 icon = WeatherFragment.this.getString(R.string.weather_sunny);
-            } else {
+            } else if(currentTime < sunrise && currentTime > sunset) {
                 icon = WeatherFragment.this.getString(R.string.weather_clear_night);
+            }else{
+                icon = WeatherFragment.this.getString(R.string.weather_sunny);
             }
         } else {
             switch (id) {
@@ -351,33 +358,33 @@ public class WeatherFragment extends Fragment {
 
                 if (i == 1) {
                     weatherDay1Title.setText(myDateResult);
-                    setUpWeatherIcon(currentWeatherArray.getJSONObject(0).getInt("id"), 1458539925, 1458584218, weatherDay1Image);
+                    setUpWeatherIcon(currentWeatherArray.getJSONObject(0).getInt("id"), sunriseJSON, sunsetJSON, weatherDay1Image);
                     weatherDay1Desc.setText(myTempDesc);
                 } else if (i == 2) {
 
                     weatherDay2Title.setText(myDateResult);
                     weatherDay2Desc.setText(myTempDesc);
-                    setUpWeatherIcon(currentWeatherArray.getJSONObject(0).getInt("id"), 1458539925, 1458584218, weatherDay2Image);
+                    setUpWeatherIcon(currentWeatherArray.getJSONObject(0).getInt("id"), sunriseJSON, sunsetJSON, weatherDay2Image);
                 }
                 if (i == 3) {
                     weatherDay3Title.setText(myDateResult);
                     weatherDay3Desc.setText(myTempDesc);
-                    setUpWeatherIcon(currentWeatherArray.getJSONObject(0).getInt("id"), 1458539925, 1458584218, weatherDay3Image);
+                    setUpWeatherIcon(currentWeatherArray.getJSONObject(0).getInt("id"), sunriseJSON, sunsetJSON, weatherDay3Image);
                 }
                 if (i == 4) {
                     weatherDay4Title.setText(myDateResult);
                     weatherDay4Desc.setText(myTempDesc);
-                    setUpWeatherIcon(currentWeatherArray.getJSONObject(0).getInt("id"), 1458539925, 1458584218, weatherDay4Image);
+                    setUpWeatherIcon(currentWeatherArray.getJSONObject(0).getInt("id"), sunriseJSON, sunsetJSON, weatherDay4Image);
                 }
                 if (i == 5) {
                     weatherDay5Title.setText(myDateResult);
                     weatherDay5Desc.setText(myTempDesc);
-                    setUpWeatherIcon(currentWeatherArray.getJSONObject(0).getInt("id"), 1458539925, 1458584218, weatherDay5Image);
+                    setUpWeatherIcon(currentWeatherArray.getJSONObject(0).getInt("id"), sunriseJSON, sunsetJSON, weatherDay5Image);
                 }
                 if (i == 6) {
                     weatherDay6Title.setText(myDateResult);
                     weatherDay6Desc.setText(myTempDesc);
-                    setUpWeatherIcon(currentWeatherArray.getJSONObject(0).getInt("id"), 1458539925, 1458584218, weatherDay6Image);
+                    setUpWeatherIcon(currentWeatherArray.getJSONObject(0).getInt("id"), sunriseJSON, sunsetJSON, weatherDay6Image);
                 }
             }
         } catch (Exception e) {
@@ -389,6 +396,5 @@ public class WeatherFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         ((AppCompatActivity) getActivity()).getSupportActionBar().show();
-
     }
 }

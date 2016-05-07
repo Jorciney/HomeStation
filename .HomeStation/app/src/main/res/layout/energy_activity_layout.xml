@@ -9,9 +9,6 @@
     android:gravity="bottom"
     sothree:umanoPanelHeight="68dp"
     sothree:umanoShadowHeight="4dp">
-    <!--<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--xmlns:tools="http://schemas.android.com/tools"-->
 
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/energy_linear_layout_main"
@@ -20,7 +17,6 @@
         android:background="@color/light"
         android:orientation="vertical"
         tools:context=".activities.MainActivity">
-        android:orientation="vertical">
 
         <com.ogaclejapan.smarttablayout.SmartTabLayout
             android:id="@+id/viewpagertab"
@@ -52,17 +48,6 @@
             app:stl_titleOffset="24dp"
             app:stl_underlineColor="#76cac985"
             app:stl_underlineThickness="1dp" />
-
-
-        <!--<android.support.design.widget.FloatingActionButton-->
-        <!--android:id="@+id/consumption_floatingButton"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_margin="@dimen/fab_margin"-->
-        <!--android:layout_marginTop="50dp"-->
-        <!--android:src="@drawable/ic_action_add_white"-->
-        <!--app:layout_anchor="@id/myLinearLayout"-->
-        <!--app:layout_anchorGravity="bottom|right|end" />-->
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager"
@@ -111,5 +96,4 @@
 
     </LinearLayout>
 
-    <!--</android.support.design.widget.CoordinatorLayout>-->
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>
