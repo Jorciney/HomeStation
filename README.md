@@ -14,7 +14,8 @@ Here are some of the main features of this app:
     - The graphics used here were from mpandroidchart
 * Smart tab layout
    - For this one I used the ogaclejapan.smarttablayout
-![image](/Screenshot/Screenshot_2016-05-07-13-31-28.png?raw=true)
+<img src="/Screenshot/Screenshot_2016-05-07-13-31-28.png" width="200">
+
 ![image](/Screenshot/Screenshot_2016-05-07-13-31-44.png?raw=true)
 ![image](/Screenshot/Screenshot_2016-05-07-13-33-32.png?raw=true)
 ![image](/Screenshot/Screenshot_2016-05-07-13-31-11.png?raw=true)
